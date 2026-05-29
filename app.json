@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "Quiet Cycle",
+    "slug": "quietcycle",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.markutilitylabs.quietcycle",
+      "buildNumber": "1"
+    },
+    "android": {
+      "package": "com.markutilitylabs.quietcycle",
+      "versionCode": 1
+    }
+  }
+}
