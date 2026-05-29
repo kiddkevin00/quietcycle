@@ -88,16 +88,21 @@ export default function App() {
     AsyncStorage.setItem(STORAGE_NOTES, JSON.stringify(notes)).catch(() => {});
   }, [notes, loaded]);
 
-  // Compute average cycle length from history
+  // Compute average cycle length from history. Filter outliers (gaps
+  // outside the 18–40 day plausible range) BEFORE averaging so a single
+  // long gap doesn't drag the whole prediction.
   const computedCycleLen = useMemo(() => {
     const sorted = [...periods].sort((a, b) => a.start.localeCompare(b.start));
     if (sorted.length < 2) return config.cycleLen;
     const gaps: number[] = [];
-    for (let i = 1; i < sorted.length; i++) {
-      gaps.push(daysBetween(parseKey(sorted[i - 1].start), parseKey(sorted[i].start)));
+    // Use the most recent 6 gaps (~6 months) as a rolling estimate.
+    const start = Math.max(1, sorted.length - 6);
+    for (let i = start; i < sorted.length; i++) {
+      const g = daysBetween(parseKey(sorted[i - 1].start), parseKey(sorted[i].start));
+      if (g > 18 && g < 40) gaps.push(g);
     }
-    const avg = Math.round(gaps.reduce((a, b) => a + b, 0) / gaps.length);
-    return avg > 18 && avg < 40 ? avg : config.cycleLen;
+    if (gaps.length === 0) return config.cycleLen;
+    return Math.round(gaps.reduce((a, b) => a + b, 0) / gaps.length);
   }, [periods, config.cycleLen]);
 
   // Last period
@@ -129,38 +134,51 @@ export default function App() {
     const leading = first.getDay(); // 0 = Sunday
     const total = last.getDate();
     const rows: Date[][] = [];
-    let current: Date[] = [];
+    const current: Date[] = [];
     for (let i = 0; i < leading; i++) current.push(addDays(first, -(leading - i)));
     for (let d = 1; d <= total; d++) current.push(new Date(y, m, d));
-    while (current.length % 7 !== 0) current.push(addDays(last, current.length - leading - total + 1));
+    // Trailing days continue from the last day of the month.
+    while (current.length % 7 !== 0) {
+      current.push(addDays(last, current.length - leading - total + 1));
+    }
     for (let i = 0; i < current.length; i += 7) rows.push(current.slice(i, i + 7));
     return rows;
   }, [viewMonth]);
 
-  // Day classifier
+  // Precompute a Set of logged period day-keys and predicted day-keys so
+  // classifyDay is O(1) per cell instead of O(periods).
+  const periodKeySet = useMemo(() => {
+    const set = new Set<string>();
+    for (const p of periods) {
+      const start = parseKey(p.start);
+      const end = p.end ? parseKey(p.end) : addDays(start, config.periodLen - 1);
+      for (let d = new Date(start); d <= end; d = addDays(d, 1)) set.add(dkey(d));
+    }
+    return set;
+  }, [periods, config.periodLen]);
+
+  const predictedKeySet = useMemo(() => {
+    const set = new Set<string>();
+    if (lastPeriod) {
+      const start = parseKey(lastPeriod.start);
+      const nextStart = addDays(start, computedCycleLen);
+      const nextEnd = addDays(nextStart, config.periodLen - 1);
+      for (let d = new Date(nextStart); d <= nextEnd; d = addDays(d, 1)) set.add(dkey(d));
+    }
+    return set;
+  }, [lastPeriod, computedCycleLen, config.periodLen]);
+
   const classifyDay = useCallback(
     (d: Date) => {
       const k = dkey(d);
-      // Logged period day
-      for (const p of periods) {
-        const start = parseKey(p.start);
-        const end = p.end ? parseKey(p.end) : addDays(start, config.periodLen - 1);
-        if (d >= start && d <= end) return { kind: 'period' as const, has: p, key: k };
-      }
-      // Predicted next-period window
-      if (lastPeriod) {
-        const start = parseKey(lastPeriod.start);
-        const nextStart = addDays(start, computedCycleLen);
-        const nextEnd = addDays(nextStart, config.periodLen - 1);
-        if (d >= nextStart && d <= nextEnd) return { kind: 'predicted' as const, key: k };
-      }
+      if (periodKeySet.has(k)) return { kind: 'period' as const, key: k };
+      if (predictedKeySet.has(k)) return { kind: 'predicted' as const, key: k };
       return { kind: 'normal' as const, key: k };
     },
-    [periods, config.periodLen, lastPeriod, computedCycleLen],
+    [periodKeySet, predictedKeySet],
   );
 
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  const todayK = useMemo(() => dkey(new Date()), []);
 
   const togglePeriod = useCallback(
     (k: string) => {
@@ -186,9 +204,14 @@ export default function App() {
           ],
         );
       } else {
+        // Freeze the end so retroactively changing periodLen in Settings
+        // doesn't reshape past entries.
+        const startDate = parseKey(k);
+        const endDate = addDays(startDate, config.periodLen - 1);
         const next: Period = {
           id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
           start: k,
+          end: dkey(endDate),
         };
         setPeriods((prev) => [...prev, next]);
       }
@@ -277,7 +300,9 @@ export default function App() {
               {row.map((d, di) => {
                 const inMonth = d.getMonth() === viewMonth.getMonth();
                 const k = dkey(d);
-                const isToday = d.getTime() === today.getTime();
+                // Compare by date-string instead of getTime() so DST
+                // transitions don't shift the "today" highlight.
+                const isToday = k === todayK;
                 const klass = classifyDay(d);
                 const hasNote = !!notes[k];
                 return (
