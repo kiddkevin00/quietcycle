@@ -2,19 +2,19 @@
 
 :root {
   --bg:          #faf2f0;
-  --surface:     #fffafa;
-  --ink:         #3a1a28;
-  --ink-muted:   #7a4f5e;
-  --ink-subtle:  #a7858f;
-  --rule:        #ead4d8;
-  --rule-soft:   #f4e4e7;
+  --surface:     #fffdfb;
+  --ink:         #2c1820;
+  --ink-muted:   #6e5560;
+  --ink-subtle:  #a48d96;
+  --rule:        #e8d6db;
+  --rule-soft:   #f3e7ea;
   --accent:      #a8546a;
   --accent-deep: #7a3a4c;
   --accent-rgb:  168, 84, 106;
 
   --font-display: 'EB Garamond', 'Iowan Old Style', Georgia, serif;
-  --font-body:    'Inter', system-ui, sans-serif;
-  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+  --font-body:    'Inter', -apple-system, system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, Menlo, monospace;
 
   --shadow-card: 0 1px 2px rgba(0,0,0,0.05), 0 10px 24px -12px rgba(0,0,0,0.12);
   --measure: 40rem;

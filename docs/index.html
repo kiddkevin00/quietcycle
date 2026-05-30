@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Quiet Cycle — A cycle log that never leaves your phone.</title>
-<meta name="description" content="A period tracker for iPhone. No account, no cloud, no ads, no data resale. Just a calendar, a prediction, and your notes." />
+<title>Quiet Cycle — Yours alone. On your phone.</title>
+<meta name="description" content="A period tracker that stays on this device. No account, no cloud, no ads, no data resale. Just a calendar, a prediction, and your notes." />
 <meta name="theme-color" content="#faf2f0" />
-<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="app.css" />
 </head>
 <body>
@@ -22,13 +22,13 @@
 
   <section class="hero" aria-labelledby="hero-title">
     <p class="hero-eyebrow"><span class="beta-badge">Now in beta · iOS via Expo Go</span></p>
-    <h1 id="hero-title">A cycle log that never leaves your phone.</h1>
-    <p class="lede">A period tracker for iPhone. No account, no cloud, no ads, no data resale. Just a calendar, a prediction, and your notes.</p>
+    <h1 id="hero-title">Yours alone. On your phone.</h1>
+    <p class="lede">A period tracker that stays on this device. No account, no cloud, no ads, no data resale. Just a calendar, a prediction, and your notes.</p>
     <div class="cta-row">
       <a class="cta-primary" href="https://github.com/kiddkevin00/quietcycle" rel="noopener" target="_blank">★ Star on GitHub</a>
       <a class="cta-secondary" href="#howtoplay">How it works →</a>
     </div>
-    <p class="trust-row"><span>Local-only</span><span>No cloud</span><span>No account</span><span>No data resale</span></p>
+    <p class="trust-row"><span>Local-only</span><span>No account</span><span>No cloud sync</span><span>Open source</span></p>
   </section>
 
   <section id="features" aria-labelledby="features-h">
@@ -36,12 +36,12 @@
     <h2 id="features-h">What's in the build</h2>
     <p class="subhead">The whole feature set, plainly listed — no upsells gating the basics.</p>
     <div class="feature-grid">
-      <article class="feature-card"><span class="feature-icon">◯</span><h3>Calendar at a glance</h3><p>Filled dots are logged days. Dashed dots are predicted. A tiny mark under a date means there is a note saved for it.</p></article>
-      <article class="feature-card"><span class="feature-icon">◷</span><h3>Rolling prediction</h3><p>Predictions improve with history — a rolling average of your most recent cycle lengths, with outliers filtered.</p></article>
-      <article class="feature-card"><span class="feature-icon">✎</span><h3>Day notes</h3><p>Tap any date to log flow (light / medium / heavy), mood, or symptoms. Optional; nothing forced.</p></article>
-      <article class="feature-card"><span class="feature-icon">◗</span><h3>Tap to log</h3><p>Tap a day on the calendar to mark a period start. Tap a day already inside a logged period to remove it.</p></article>
-      <article class="feature-card"><span class="feature-icon">⊘</span><h3>Zero network</h3><p>There is no account, no leaderboard, no cloud sync, and no analytics. The app never makes a network request.</p></article>
-      <article class="feature-card"><span class="feature-icon">⚙</span><h3>Tunable defaults</h3><p>Settings let you set the starting cycle and period length. Once you have history, the app uses your actual averages instead.</p></article>
+      <article class="feature-card"><span class="feature-icon">✦</span><h3>Local-only by design</h3><p>There is no account, no login, no server. No record outside this phone to subpoena or breach. Uninstall to wipe.</p></article>
+      <article class="feature-card"><span class="feature-icon">◷</span><h3>Cycle predictions that adapt</h3><p>Rolling average of your last six cycles, with outliers filtered before averaging so one anomalous gap doesn't drag the whole prediction.</p></article>
+      <article class="feature-card"><span class="feature-icon">▦</span><h3>Month calendar at a glance</h3><p>Logged days are filled, predicted days dashed. Today is outlined. Days with a note get a dot underneath.</p></article>
+      <article class="feature-card"><span class="feature-icon">✎</span><h3>Per-day notes</h3><p>Flow (light / medium / heavy), free-text mood, free-text symptoms. Notes are tied to dates and stay on this device.</p></article>
+      <article class="feature-card"><span class="feature-icon">↔</span><h3>Adjustable defaults</h3><p>Average cycle length and typical period length are configurable starting estimates. Once you have history, the app prefers your actual averages.</p></article>
+      <article class="feature-card"><span class="feature-icon">⤓</span><h3>Frozen period ends</h3><p>Each logged period freezes its end date when created, so changing the default period length in Settings won't retroactively reshape your history.</p></article>
     </div>
   </section>
 
@@ -50,10 +50,11 @@
     <h2 id="howto-h">From cold-start to good-at-it</h2>
     <p class="subhead">A few short steps. The app gets out of your way after that.</p>
     <div class="steps-grid">
-      <article class="step-card"><span class="step-num">01</span><h3>Log the first start</h3><p>Open the app, tap the calendar day your period started. The app records it and begins tracking from there.</p></article>
-      <article class="step-card"><span class="step-num">02</span><h3>Let it learn</h3><p>Log each cycle's start. With two or more cycles, the app shifts from default 28-day prediction to a rolling average of your actual gaps.</p></article>
-      <article class="step-card"><span class="step-num">03</span><h3>Add notes when you want</h3><p>Tap any day for the day-editor sheet. Add flow, mood, symptoms — or nothing.</p></article>
-      <article class="step-card"><span class="step-num">04</span><h3>Trust the privacy</h3><p>The data is never sent anywhere. Uninstalling the app removes everything. There's nothing to subpoena because there's no server.</p></article>
+      <article class="step-card"><span class="step-num">01</span><h3>Tap a day to log a period start</h3><p>On the calendar, tap any day. The app marks the start of a period there and auto-fills the next N-1 days using your typical period length.</p></article>
+      <article class="step-card"><span class="step-num">02</span><h3>Watch predictions appear</h3><p>Once you have a logged start, the dashed circles show when the app expects the next period to begin. Predictions sharpen with more cycles.</p></article>
+      <article class="step-card"><span class="step-num">03</span><h3>Add per-day notes</h3><p>Tap a day to open the day editor. Set flow level (light / medium / heavy), type a mood, type any symptoms. Saved with that date only.</p></article>
+      <article class="step-card"><span class="step-num">04</span><h3>Adjust defaults in Settings</h3><p>Tap Settings (top right) to change your typical cycle length and period length. New entries pick up the new defaults; old entries stay frozen.</p></article>
+      <article class="step-card"><span class="step-num">05</span><h3>Remove a period</h3><p>Tap any day inside a logged period and choose Remove period. The whole period (start + frozen days) is deleted.</p></article>
     </div>
   </section>
 
@@ -61,7 +62,7 @@
     <p class="eyebrow">Screenshots</p>
     <h2 id="shots-h">What it looks like on a phone</h2>
     <p class="subhead">Captured from the running app at iPhone 14 viewport.</p>
-    <div class="shots-empty">Screenshots from the running app are coming soon.</div>
+    <div class="shots-grid"><figure class="shot-card"><img src="screenshots/01-calendar.png" alt="Status card + month calendar. Logged days are solid, today is outlined, prediction lives at the top. screenshot" loading="lazy" /><figcaption class="shot-caption"><span class="n">01</span><span>Status card + month calendar. Logged days are solid, today is outlined, prediction lives at the top.</span></figcaption></figure><figure class="shot-card"><img src="screenshots/02-day.png" alt="Day editor — remove the period, set flow level, type mood and symptoms. All saved to this date only. screenshot" loading="lazy" /><figcaption class="shot-caption"><span class="n">02</span><span>Day editor — remove the period, set flow level, type mood and symptoms. All saved to this date only.</span></figcaption></figure></div>
   </section>
 
   <footer class="colophon">

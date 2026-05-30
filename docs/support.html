@@ -6,7 +6,7 @@
 <title>Quiet Cycle — Support</title>
 <meta name="description" content="Support and FAQ for Quiet Cycle." />
 <meta name="theme-color" content="#faf2f0" />
-<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="app.css" />
 </head>
 <body>
@@ -27,7 +27,7 @@
   </section>
 
   <section style="padding-top:0">
-    <div class="faq"><details><summary>Why does this exist?</summary><p>The biggest free period trackers run ads, share with advertisers, or store data on their servers. In jurisdictions where reproductive health data has been subpoenaed, that's not theoretical. Quiet Cycle is a deliberate counterweight.</p></details><details><summary>How accurate is the prediction?</summary><p>With one logged cycle, the app uses your default cycle length. With two or more, it uses a rolling average of your most recent gaps (filtering outliers outside 18–40 days).</p></details><details><summary>Can I sync it across devices?</summary><p>No. By design — there is no account and no server to sync with. If you switch phones, the data does not transfer.</p></details><details><summary>Can I export my data?</summary><p>Not yet. Export is on the roadmap. For now, the data is stored locally and uninstalling removes it.</p></details></div>
+    <div class="faq"><details><summary>Why local-only?</summary><p>Reproductive health data is a legal-exposure issue in the United States and elsewhere. Quiet Cycle is structured so there is no record outside your phone to subpoena, breach, or be resold by an advertising broker.</p></details><details><summary>How accurate is the prediction?</summary><p>Predictions improve with more history. With one logged cycle the app falls back to your configured default. With two or more, it averages the most recent six cycle lengths, filtering anything outside 18–40 days as an outlier before averaging.</p></details><details><summary>What happens if I change the default period length?</summary><p>Already-logged periods are frozen at their original end date, so they don't retroactively change. New logged periods pick up the new default.</p></details><details><summary>Is anything sent anywhere?</summary><p>No. There is no account, no login, no cloud sync, no server, no analytics, no third-party SDKs. Every byte stays on this device until you delete it.</p></details><details><summary>How do I delete everything?</summary><p>Uninstall the app. Individual periods can be removed by tapping a day inside the period and choosing Remove period. Individual notes can be cleared by emptying the fields in the day editor.</p></details></div>
   </section>
 
   <aside class="contact-card">

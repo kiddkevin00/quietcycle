@@ -6,7 +6,7 @@
 <title>Quiet Cycle — Privacy Policy</title>
 <meta name="description" content="Privacy policy for Quiet Cycle. Data stays on your device." />
 <meta name="theme-color" content="#faf2f0" />
-<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="app.css" />
 </head>
 <body>
@@ -32,13 +32,13 @@
       <p class="eyebrow">Scope</p>
       <h2>What data the app handles</h2>
       <p>The app only touches data you create or capture inside it.</p>
-      <ul><li><strong>Period start dates</strong> you log.</li><li><strong>Day notes</strong> (flow, mood, symptoms) if you choose to record them.</li><li><strong>Settings</strong> (default cycle / period length).</li></ul>
+      <ul><li><strong>Period start dates</strong> (and the auto-filled frozen end dates) you log.</li><li><strong>Day notes</strong> (flow, mood, symptoms) — only what you type.</li><li><strong>Settings</strong> (default cycle / period length).</li></ul>
     </section>
 
     <section>
       <p class="eyebrow">Storage</p>
       <h2>How that data is stored</h2>
-      <p>Everything lives in AsyncStorage on your device. There is no account, no login, no cloud sync, no server.</p>
+      <p>Everything lives in the app's sandboxed local storage on your device, using React Native's <span class="kbd">AsyncStorage</span>. There is no account, no login, no cloud sync, no server.</p>
       <ul>
         <li>Deleting items from inside the app removes them permanently from your device.</li>
         <li>Uninstalling the app removes all stored data.</li>
@@ -58,7 +58,7 @@
       </ul>
     </section>
 
-    <section><p class="eyebrow">Reproductive privacy</p><h2>Why this matters</h2><p>In the United States and elsewhere, reproductive health data has become a legal-exposure issue. Quiet Cycle is structured so that there is no record outside your phone to subpoena or breach. If you want to remove all data, uninstall the app.</p></section>
+    <section><p class="eyebrow">Reproductive privacy</p><h2>Why this matters</h2><p>Reproductive health data has been subpoenaed and resold in jurisdictions worldwide. Quiet Cycle is structured so that there is no record outside your phone for either pathway. If you want to remove all data, uninstall the app.</p><p>You can also clear individual cycles by tapping a date inside a logged period and choosing <strong>Remove period</strong>.</p></section>
 
     <section>
       <p class="eyebrow">Children</p>
